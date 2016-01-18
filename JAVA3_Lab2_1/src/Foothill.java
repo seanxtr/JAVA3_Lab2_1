@@ -1,7 +1,7 @@
-// CIS 1C Assignment #2 
-// Instructor Solution Featuring clone()
-
-// client -----------------------------------------------------
+/*
+ * CS1C Lab2 Assignment
+ * Part A and B
+ */
 import cs_1c.*;
 import java.util.*;
 
@@ -27,7 +27,6 @@ public class Foothill
       mat.showSubSquare(0, 12);
       System.out.println();
       
-      /*
       SparseMat<Double> mat2 = (SparseMat<Double>)mat.clone();
       
       for (k = 0; k < 10; k++)
@@ -40,6 +39,5 @@ public class Foothill
       mat.showSubSquare(0, 12);
       System.out.println();
       mat2.showSubSquare(0, 12);
-      */
    }
 }

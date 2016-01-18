@@ -8,7 +8,7 @@ import cs_1c.*;
 
 public class SparseMat<E> implements Cloneable{
    
-   /*
+   /**
     * inner node class used to store column index and data
     */
    protected class MatNode<E> implements Cloneable{
@@ -161,9 +161,14 @@ public class SparseMat<E> implements Cloneable{
    public void showSubSquare(int start, int size){
       MatNode tempNode;
       
+      // loop through each row
       for (int i = start; i < start + size; i++){
+         // loop through each column
          for (int k = start; k < start + size; k++){
+            // try to find node
             tempNode = FindNode(i,k);
+            
+            // print out data value
             System.out.printf("%7s",tempNode == null ? 
                defaultVal.toString() : tempNode.data.toString());
          }
@@ -178,14 +183,18 @@ public class SparseMat<E> implements Cloneable{
       FHlinkedList<MatNode> row;
       Iterator<MatNode> itr;
       
+      // create a new sparse mat with property as current class
       SparseMat<E> newMat = 
          new SparseMat<E>(this.rowSize, this.colSize, this.defaultVal);
       
+      // loop through each row in current class
       for(int i = 0; i < rows.size(); i++){
          row = rows.get(i);
          itr = row.iterator();
          
+         // loop through each column
          while (itr.hasNext()){
+            // deep copy each node to new sparse mat
             newMat.rows.get(i).add((MatNode)itr.next().clone());
          }
       }

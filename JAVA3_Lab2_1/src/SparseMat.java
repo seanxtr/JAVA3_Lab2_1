@@ -11,7 +11,7 @@ public class SparseMat<E> implements Cloneable{
    /**
     * inner node class used to store column index and data
     */
-   protected class MatNode<E> implements Cloneable{
+   protected class MatNode implements Cloneable{
       public int col;
        public E data;
 
@@ -28,7 +28,7 @@ public class SparseMat<E> implements Cloneable{
 
       public Object clone() throws CloneNotSupportedException {
          // shallow copy
-         MatNode<E> newObject = (MatNode<E>)super.clone();
+         MatNode newObject = (MatNode)super.clone();
          return (Object) newObject;
       }
    };
@@ -67,7 +67,7 @@ public class SparseMat<E> implements Cloneable{
          c < 0 || c > colSize - 1)
          throw new IndexOutOfBoundsException();
       
-      MatNode<?> targetNode = FindNode(r,c);
+      MatNode targetNode = FindNode(r,c);
       
       return targetNode == null ? defaultVal : (E)targetNode.data;
    }
@@ -101,7 +101,7 @@ public class SparseMat<E> implements Cloneable{
       {
          if (!x.equals(defaultVal)){
             // add new node
-            rows.get(r).add(new MatNode<E>(c, x));
+            rows.get(r).add(new MatNode(c, x));
          }
       }
       
@@ -114,15 +114,15 @@ public class SparseMat<E> implements Cloneable{
     * @param c      column index
     * @return       target node if exists, otherwise null
     */
-   private MatNode<?> FindNode(int r, int c) {
+   private MatNode FindNode(int r, int c) {
       // get row
       FHlinkedList<MatNode> row = rows.get(r);
       Iterator<MatNode> itr = row.iterator();
-      MatNode<?> tempNode;
+      MatNode tempNode;
       
       // go through the linked list at the row
       while (itr.hasNext()){
-         tempNode = (MatNode<?>)itr.next();
+         tempNode = (MatNode)itr.next();
          
          // if column index matches
          if (tempNode.col == c)
